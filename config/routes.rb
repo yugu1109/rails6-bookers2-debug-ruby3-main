@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   end
 
   resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
-   resource :group_users, only: [:create, :destroy]
+    resource :group_users, only: [:create, :destroy]
+    resources :event_notices, only: [:new, :create]
+    get "event_notices" => "event_notices#sent"
   end
 
   get '/search', to: 'searches#search'
